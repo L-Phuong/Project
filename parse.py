@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import mysql.connector # type: ignore
+import mysql.connector
 
 # Fetch và parse HTML
 url = "https://www.scrapingcourse.com/ecommerce/"
