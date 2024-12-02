@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 from bs4 import BeautifulSoup
 import mysql.connector
@@ -10,8 +11,8 @@ if response.status_code == 200:
     soup = BeautifulSoup(html_content, "html.parser")
 
     # Trích xuất dữ liệu
-    titles = [h2.text for h2 in soup.find_all("h2")]
-    link = [a['href'] for a in soup.find_all("a", href=True)]
+    titles = [h2.text.strip() for h2 in soup.find_all("h2")]
+    link = [a['href'].strip() for a in soup.find_all("a", href=True)]
     x = 16
     links = []
     for i in range(1, 16):
@@ -47,6 +48,6 @@ if response.status_code == 200:
     db_connection.commit()
     cursor.close()
     db_connection.close()
-    print("Dữ liệu đã được lưu thành công!")
+    print("Data has been saved successfully!")
 else:
     print(f"Failed to fetch page. Status code: {response.status_code}")
